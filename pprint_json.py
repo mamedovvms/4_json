@@ -10,22 +10,20 @@ def load_data(filepath):
         except json.JSONDecodeError:
             return
 
-def pretty_print_json(data_for_print):
-    print(json.dumps(data_for_print, indent=4, ensure_ascii=False))
+def pretty_print_json(data_to_print):
+    print(json.dumps(data_to_print, indent=4, ensure_ascii=False))
 
 
 if __name__ == '__main__':
-    if not len(sys.argv[1]):
-        print('Не введен путь к файлу')
-        exit(0)
+    if not len(sys.argv):
+        exit('Не введен путь к файлу')
 
     filepath = sys.argv[1]
     if not os.path.exists(filepath):
-        print('Файл не найден')
-        exit(0)
-    content_file_json = load_data(filepath)
-    if not content_file_json:
-        print('Содержимое файла не в формате json')
-        exit(0)
+        exit('Файл не найден')
 
-    pretty_print_json(content_file_json)
+    data_to_print = load_data(filepath)
+    if not data_to_print:
+        exit('Содержимое файла не в формате json')
+
+    pretty_print_json(data_to_print)
