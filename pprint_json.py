@@ -15,7 +15,7 @@ def pretty_print_json(data_for_print):
 
 
 if __name__ == '__main__':
-    if len(sys.argv[1]) == 0:
+    if not len(sys.argv[1]):
         print('Не введен путь к файлу')
         exit(0)
 
