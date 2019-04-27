@@ -1,6 +1,6 @@
 import json
-import sys
 import os
+import argparse
 
 
 def load_data(filepath):
@@ -15,11 +15,13 @@ def pretty_print_json(data_to_print):
 
 
 if __name__ == '__main__':
-    if not len(sys.argv):
-        exit('Не введен путь к файлу')
 
-    filepath = sys.argv[1]
-    if not os.path.exists(filepath):
+    parser = argparse.ArgumentParser()
+    parser.add_argument('filepath', help='File data in json format')
+    params = parser.parse_args()
+    filepath = params.filepath
+
+    if not os.path.isfile(filepath):
         exit('Файл не найден')
 
     data_to_print = load_data(filepath)
